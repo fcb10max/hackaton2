@@ -16,12 +16,12 @@ import { ReactComponent as ArrowDownIcon } from "../assets/icons/arrowDown.svg";
 
 interface ICustomListItemProps {
     item: ISidebarItem,
-    divider: boolean,
+    divider?: boolean,
 }
 
 const NonCollapsibleListItem: React.FC<Pick<ICustomListItemProps, "item">> = ({ item }) => {
     return <>
-        <ListItemButton>
+        <ListItemButton onClick={item.onClick}>
             <ListItemIcon>
                 {item.icon &&
                     <Icon color="primary" fontSize="large"><item.icon /></Icon>
@@ -60,7 +60,7 @@ const CollapsibleListItem: React.FC<Pick<ICustomListItemProps, "item">> = ({ ite
     </Accordion>
 }
 
-const CustomListItem: React.FC<ICustomListItemProps> = ({ divider, item }) => {
+const CustomListItem: React.FC<ICustomListItemProps> = ({ item, divider= false }) => {
     return <>
         <ListItem key={item.id} disablePadding>
             {Array.isArray(item.submenus)

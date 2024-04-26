@@ -5,12 +5,17 @@ import React, { createContext, useState, useMemo } from "react";
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
 const ThemingProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-    const [mode, setMode] = useState<"light" | "dark">("light");
+    const themeMode = (localStorage.getItem("theme") ?? "light") as ("dark" | "light");
+    const [mode, setMode] = useState<"light" | "dark">(themeMode);
 
     const colorMode = React.useMemo(
         () => ({
             toggleColorMode: () => {
-                setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+                setMode((prevMode) => {
+                    const newMode = prevMode === "light" ? "dark" : "light";
+                    localStorage.setItem("theme", newMode);
+                    return newMode;
+                });
             },
         }),
         [],

@@ -2,10 +2,11 @@ import { ReactComponent as MenuIcon } from "../assets/icons/menu.svg";
 import { ReactComponent as LightDarkThemeIcon } from "../assets/icons/lightDarkTheme.svg";
 
 export interface ISidebarItem {
-    id: number,
+    id: number | string,
     text: string,
+    onClick?: () => void,
     submenus?: ISidebarItem[],
-    icon?: React.FC
+    icon?: React.FC,
 }
 
 const sidebarItems: ISidebarItem[] = [

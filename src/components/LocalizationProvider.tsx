@@ -31,11 +31,17 @@ const messages = {
 }
 
 const LocalizationProvider: React.FC<PropsWithChildren> = ({ children }) => {
-    const [locale, setLocale] = useState("en");
+    const defaultLang = localStorage.getItem("lang") ?? "en"
+    const [locale, setLocale] = useState(defaultLang);
+
+    const onLocaleChange = (newLocale: string) => {
+        setLocale(newLocale);
+        localStorage.setItem("lang", newLocale);
+    }
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>
-            <LocaleContext.Provider value={{ locale, setLocale }}>
+            <LocaleContext.Provider value={{ locale, setLocale: onLocaleChange }}>
                 {children}
             </LocaleContext.Provider>
         </IntlProvider>

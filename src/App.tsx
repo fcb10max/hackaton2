@@ -9,7 +9,7 @@ import ThemingProvider from "./components/ThemingProvider";
 const App: React.FC = () => {
   return (
     <ThemingProvider>
-      <Box sx={({ minWidth: "100vw", minHeight: "100vh", height: "100%", bgcolor: "background.default" })}>
+      <Box sx={({ bgcolor: "background.default" })}>
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>

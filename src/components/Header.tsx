@@ -8,7 +8,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CustomDropdown, { IDropdownItem } from "./CustomDropdown";
 import { ColorModeContext } from "./ThemingProvider";
 import styles from "./index.module.css";
-import { FormattedMessage } from "react-intl";
 import { LocaleContext, LOCALES } from "./LocalizationProvider";
 
 const Header: React.FC = () => {
@@ -16,7 +15,7 @@ const Header: React.FC = () => {
     const localeContext = useContext(LocaleContext);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const recursionFunc = (items: ISidebarItem[]): IDropdownItem[] => items.map(item => ({
-        id: item.id,
+        id: item.id as number,
         title: item.text,
         children: Array.isArray(item.submenus) ? recursionFunc(item.submenus) : undefined,
     }));
@@ -43,29 +42,25 @@ const Header: React.FC = () => {
     );
 
     return (
-        <Box>
+        <Box sx={{ px: 0 }}>
             <Sidebar onClose={() => setDrawerOpen(false)} open={drawerOpen} />
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h3" component="h1" color="white">LOGO</Typography>
-                    <Typography variant="h6" component="h6" color="white">
-                        <FormattedMessage id="text_1" />
-                    </Typography>
-                    <Typography variant="h6" component="h6" color="white">
-                        <FormattedMessage id="text_2" />
-                    </Typography>
-                    <Typography variant="h6" component="h6" color="white">
-                        <FormattedMessage id="text_3" />
-                    </Typography>
                     <Box sx={{ ml: "auto" }}>
-                        <CustomDropdown item={localeBtnItem} sx={{ color: "white" }} />
-                        <IconButton onClick={colorModeContext.toggleColorMode}>
-                            <Icon fontSize="large" sx={{ color: "#fff" }}>
-                                <ColorModeIcon />
-                            </Icon>
-                        </IconButton>
-                        <IconButton onClick={() => setDrawerOpen(true)}>
-                            <Icon fontSize="large" sx={{ color: "#fff" }}>
+                        <Box sx={{ alignItems: "center", display: { xs: "none", sm: "inline-flex" } }}>
+                            <CustomDropdown
+                                item={localeBtnItem}
+                                sx={{ color: "white", height: "fit-content", py: ".5rem" }}
+                            />
+                            <IconButton onClick={colorModeContext.toggleColorMode}>
+                                <Icon fontSize="large" sx={{ color: "#fff" }}>
+                                    <ColorModeIcon />
+                                </Icon>
+                            </IconButton>
+                        </Box>
+                        <IconButton onClick={() => setDrawerOpen(true)} sx={{display: { xs: "inline-flex", sm: "none" }}}>
+                            <Icon sx={{ color: "#fff",  }}>
                                 <MenuIcon />
                             </Icon>
                         </IconButton>
@@ -79,7 +74,7 @@ const Header: React.FC = () => {
                 style={{ margin: ".4rem 0" }}
                 tag="nav"
                 wrapperTag="ul"
-                className={styles.customSwiper}
+                className={styles.navmenuSwiper}
             >
                 {changedMenuItems.map(item =>
                     <SwiperSlide key={item.id} style={{ width: "fit-content" }} tag="li">
