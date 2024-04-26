@@ -2,11 +2,7 @@
  * 
  * TODO:
  * 
- * 1. receive images as array
- * 2. add button slide
- * 3. add current slide progress bar show(make optional)
- * 4. accept slides per view
- * 5. fix autoplay not running on startup
+ * 1. fix autoplay not running on startup
  * 
  */
 
