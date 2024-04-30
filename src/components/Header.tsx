@@ -42,9 +42,9 @@ const Header: React.FC = () => {
     );
 
     return (
-        <Box sx={{ px: 0 }}>
+        <>
             <Sidebar onClose={() => setDrawerOpen(false)} open={drawerOpen} />
-            <AppBar position="static">
+            <AppBar position="sticky">
                 <Toolbar>
                     <Typography variant="h3" component="h1" color="white">LOGO</Typography>
                     <Box sx={{ ml: "auto" }}>
@@ -59,8 +59,8 @@ const Header: React.FC = () => {
                                 </Icon>
                             </IconButton>
                         </Box>
-                        <IconButton onClick={() => setDrawerOpen(true)} sx={{display: { xs: "inline-flex", sm: "none" }}}>
-                            <Icon sx={{ color: "#fff",  }}>
+                        <IconButton onClick={() => setDrawerOpen(true)} sx={{ display: { xs: "inline-flex", sm: "none" } }}>
+                            <Icon sx={{ color: "#fff", }}>
                                 <MenuIcon />
                             </Icon>
                         </IconButton>
@@ -82,7 +82,7 @@ const Header: React.FC = () => {
                     </SwiperSlide>
                 )}
             </Swiper>
-        </Box>
+        </>
     )
 }
 

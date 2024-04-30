@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import ImgSlider from "../components/ImgSlider";
 import images from "../config/images.json";
 import { FormattedMessage } from "react-intl";
+import CustomTable from "../components/CustomTable/CustomTable";
 
 const imgsArr = images.map((image, idx) => ({ id: idx + 1, path: "/imgs/" + image.name, alt: image.name }));
 
@@ -11,7 +12,7 @@ const Home: React.FC = () => {
     return (
         <Container
             maxWidth={"xl"}
-            sx={{ px: 0 }}
+            sx={{ px: 0, position: "relative", height: "100%", boxSizing: "border-box" }}
         >
             <Header />
             <Typography variant="h6" component="h6" color="white">
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
             </Typography>
 
             <ImgSlider images={imgsArr} />
+            <CustomTable />
         </Container>
     )
 }
