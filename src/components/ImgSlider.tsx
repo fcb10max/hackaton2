@@ -1,11 +1,3 @@
-/**
- * 
- * TODO:
- * 
- * 1. fix autoplay not running on startup
- * 
- */
-
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";

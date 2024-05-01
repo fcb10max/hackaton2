@@ -5,6 +5,7 @@ import ImgSlider from "../components/ImgSlider";
 import images from "../config/images.json";
 import { FormattedMessage } from "react-intl";
 import CustomTable from "../components/CustomTable/CustomTable";
+import CustomChart from "../components/CustomChart";
 
 const imgsArr = images.map((image, idx) => ({ id: idx + 1, path: "/imgs/" + image.name, alt: image.name }));
 
@@ -27,6 +28,7 @@ const Home: React.FC = () => {
 
             <ImgSlider images={imgsArr} />
             <CustomTable />
+            <CustomChart />
         </Container>
     )
 }
